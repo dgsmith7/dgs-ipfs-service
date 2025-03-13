@@ -11,10 +11,34 @@ import cors from "cors";
 import logger from "./config/logger.js";
 import cron from "node-cron";
 import { updateUserVolumes } from "./cron/updateUserVolumes.js";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 dotenv.config();
 
 const app = express();
+
+// Trust the reverse proxy
+app.set("trust proxy", 1);
+
+// Use Helmet for security headers
+app.use(helmet());
+
+// Configure CORS – adjust origin as needed
+app.use(
+  cors({
+    origin: "http://yourdomain.com", // update to your frontend domain if needed
+    credentials: true,
+  })
+);
+
+// Rate limiting: limit each IP to 100 requests per minute
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 100,
+  message: "Too many requests from this IP, please try again later.",
+});
+app.use(limiter);
 
 // Basic middleware configuration
 app.use(cookieParser());
