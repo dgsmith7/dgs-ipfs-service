@@ -1,0 +1,52 @@
+{
+  "name": "dgs-ipfs-service",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon app.js",
+    "start": "NODE_ENV=production node app.js"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dgsmith7/dgs-ipfs-service.git"
+  },
+  "author": "David Gail Smith, DGS Creative, LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dgsmith7/dgs-ipfs-service/issues"
+  },
+  "homepage": "https://pin.dgs-creative.com",
+  "description": "IPFS Pinning Service for DGS Creative, LLC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.8",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "form-data": "^4.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.0",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9",
+    "npm-check-updates": "^17.1.14",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "uuid": "^11.0.5",
+    "winston": "^3.17.0",
+    "winston-mongodb": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.9",
+    "ejs-lint": "^2.0.1"
+  }
+}

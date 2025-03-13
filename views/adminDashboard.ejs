@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <title>Smitty's IPFs pinning service and API</title>
+  <meta name="author" content="David G. Smith">
+  <meta name="description" content="A pinning service portal for Smitty's IPFS node">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Oxanium:wght@500&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- Added Chart.js CDN script tag -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <%- include('header'); %>
+
+  <!-- Splash page -->
+  <div id="splashbox" class="container-fluid sticky-top w-100">
+    <div id="splash">
+      <div class="spacer"></div>
+    </div>
+  </div>
+
+  <main class="container my-5">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
+
+    <!-- Users List Section remains unchanged -->
+    <section id="users" class="mb-5">
+      <h2>User Profiles</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Last Activity</th>
+            <th>Status</th>
+            <th>Volume</th>
+            <th>Capacity</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach((u) => { %>
+          <tr data-username="<%= u.username %>">
+            <td><%= u.username %></td>
+            <td><%= (u.lastlogin)
+              .toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
+              .replace(/ /g, '-')%></td>
+            <td><%= u.status %></td>
+            <td><%= (u.volume / 1000.0).toFixed(1) %> MB</td>
+            <td><%= u.capacity %> MB</td>
+            <td>
+              <% if (u.status === 'free') { %>
+              <button class="btn btn-sm btn-warning hold-btn" data-username="<%= u.username %>">Place Hold</button>
+              <% } else { %>
+              <button class="btn btn-sm btn-success release-btn" data-username="<%= u.username %>">Remove Hold</button>
+              <% } %>
+              <button class="btn btn-sm btn-danger delete-user-btn" data-username="<%= u.username %>">Delete</button>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- After existing sections, add allowed list management -->
+    <section id="allowed-list" class="mt-5">
+      <h2>Allowed Users</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Email Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (allowedUsers && allowedUsers.length > 0) { %>
+          <% allowedUsers.forEach((user) => { %>
+          <tr>
+            <td><%= user.email %></td>
+          </tr>
+          <% }) %>
+          <% } else { %>
+          <tr>
+            <td>No allowed users.</td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+      <h3>Add Allowed User</h3>
+      <form id="addAllowedForm">
+        <div class="mb-3">
+          <label for="allowedEmail" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="allowedEmail" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+    </section>
+
+    <script>
+      // Handle allowed user form submission via AJAX
+      const addAllowedForm = document.getElementById('addAllowedForm');
+      addAllowedForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('allowedEmail').value;
+        try {
+          const r = await fetch("/protected/admin/allowed", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+          });
+          const response = await r.json();
+          alert(response.msg);
+          window.location.reload();
+        } catch (err) {
+          console.error("Error adding allowed user:", err);
+          alert("Failed to add allowed user");
+        }
+      });
+    </script>
+  </main>
+  <%- include('footer'); %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <!-- Updated script tag using absolute path -->
+  <script type="module" src="../js/adminDashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<nav id="header" class="bhf-light navbar navbar-expand fixed-top">
+  <div class="container-fluid sticky-top">
+    <div>
+      <a class="navbar-brand d-none d-sm-block" href="/" aria-label="Back to top of home page" role="link">
+        <!-- <img id="header-logo" class="me-auto" src="../images/favicon.ico" height="45" alt="artist's icon"> -->
+        <img id="logo" class="me-auto" src="../images/smittys.png" height="45" alt="artist's icon">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="collapse-items">
+      <ul id="nav-list" class="navbar-nav me-auto mb-1 mb-sm-0">
+        <li class="nav-item">
+          <a class="n-list-light nav-link active fs-5 text-light" href="/login"><strong>Login</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="n-list-light nav-link active fs-5 text-light" href="/protected/profile"><strong>Profile</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="n-list-light nav-link active fs-5 text-light" href="/nodeinfo"><strong>IPFS-Node</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="n-list-light nav-link active fs-5 text-light" href="/protected/apidocs"><strong>Docs</strong></a>
+        </li>
+        <li class="nav-item">
+          <a class="n-list-light nav-link active fs-5 text-light" href="/logout"><strong>Logout</strong></a>
+        </li>
+      </ul>
+    </div>
+    <!-- Loading icon -->
+    <div id="loading" class="text-success text-center position-absolute start-50 translate-middle-x mt-5" role="status">
+      <div class="spinner-grow mt-1"></div>
+      <div>Loading</div>
+      <script>
+        // manage loading icon
+        document.onreadystatechange = function () {
+          setTimeout(() => {
+            if (document.readyState == "complete") {
+              document.querySelector("#loading").classList.add("invisible");
+            }
+          }, 1500);
+        };
+      </script>
+    </div>
+  </div>
+</nav>

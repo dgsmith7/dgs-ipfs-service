@@ -1,0 +1,133 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #e6b300;
+  font-family: orbitron;
+  color: #fc4000;
+}
+
+#profile-card,
+#profile-info {
+  height: 400px;
+}
+/* div {
+  border: 1px solid red;
+} */
+
+@keyframes fadeInAnimation {
+  /*for div fade-in */
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  60% {
+    transform: translateX(-10px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.5s;
+}
+
+card {
+  min-height: 400px;
+}
+
+div {
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.area {
+  min-height: 750px;
+}
+
+.spacer {
+  min-height: 75px;
+}
+
+#splash {
+  height: 350px;
+  background: url("/images/smittys.png");
+  background-repeat: no-repeat;
+  background-position: center 7%;
+  background-size: 560px 285px;
+  background-attachment: fixed;
+}
+
+#splashbox {
+  background-color: #e6b300;
+}
+
+#header {
+  background-color: #e6b300;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.code-block {
+  background-color: #000000;
+  border: 1px solid #ccc;
+  font-family: monospace;
+  width: 600px;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.copy-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.modal {
+  background-color: rgba(132, 132, 132);
+}
