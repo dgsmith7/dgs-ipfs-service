@@ -53,6 +53,7 @@ async function handleSignIn() {
     };
     const r = await fetch(`/login`, {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
@@ -85,6 +86,7 @@ async function handleSignUp() {
     };
     const r = await fetch(`/register`, {
       method: "POST",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
@@ -112,6 +114,7 @@ async function handleSendOtp() {
     };
     const r = await fetch(`/sendotp`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-type": "application/json",
       },
@@ -148,6 +151,7 @@ async function handleForgot() {
     };
     const r = await fetch(`/validateotp`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-type": "application/json",
       },

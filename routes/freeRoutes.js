@@ -72,10 +72,12 @@ router.post("/login", async (req, res, next) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      //      domain: "pin.ds-creative.com", // or your correct domain
     });
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      //      domain: "pin.ds-creative.com", // or your correct domain
     });
     await initUserData(user.username);
     logger.info(`User ${req.body.username} logged in successfully.`);
@@ -108,6 +110,7 @@ router.post("/refresh-token", async (req, res) => {
     res.cookie("refreshToken", newRefreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      //      domain: "pin.ds-creative.com", // or your correct domain lie localhost (or comment it out)
     });
     res.status(200).json({ token: newToken });
   } catch (err) {

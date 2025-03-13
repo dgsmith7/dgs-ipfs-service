@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function refreshToken() {
     try {
-      const response = await fetch("/refresh-token", { method: "POST" });
+      const response = await fetch("/refresh-token", {
+        method: "POST",
+        //        credentials: "include", // toggle for local / deployed
+      });
       if (response.ok) {
         const data = await response.json();
         // console.log("Token refreshed automatically:", data.token);

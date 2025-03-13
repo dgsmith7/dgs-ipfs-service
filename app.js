@@ -18,17 +18,23 @@ dotenv.config();
 
 const app = express();
 
-// Trust the reverse proxy
+//  dont do this:   Trust the reverse proxy
+//app.set("trust proxy", 1);
+Trust the reverse proxy if deployed
 app.set("trust proxy", 1);
 
 // Use Helmet for security headers
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // disable CSP set by Helmet
+  })
+);
 
 // Configure CORS – adjust origin as needed
 app.use(
   cors({
-    origin: "http://yourdomain.com", // update to your frontend domain if needed
-    credentials: true,
+       origin: "http://pin.dgs-creative.com", // update to your frontend domain if needed
+       credentials: true,
   })
 );
 

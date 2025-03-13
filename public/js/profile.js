@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
           const response = await fetch("/protected/profile/unpinBatch", {
             method: "POST",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ cids: [cid] }),
           });
@@ -87,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
           let batch = unpinList.slice(i, i + batchSize);
           await fetch("/protected/profile/unpinBatch", {
             method: "POST",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ cids: batch }),
           });
@@ -140,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const response = await fetch("/mail", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           sub: "Contact from Pinning Service",
@@ -161,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       const r = await fetch("/protected/profile/generateApiKey", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
       });
       if (r.ok) {
@@ -196,6 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const r = await fetch("/protected/profile/deleteAccount", {
           method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
         });
         if (r.ok) {
