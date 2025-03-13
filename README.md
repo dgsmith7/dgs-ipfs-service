@@ -6,7 +6,7 @@ This application provides a web portal for interacting with an IPFS node. Users 
 
 At this time I am offering the service to friends and students for free, with an option for donations to help cover costs. I manage an invite-list to control access to the service, and memory limits for pinning so the node is not abused.
 
-Writing this service, along with standing up and configuring the node, the building and configuring the reverse-proxy authentication server for it, has been a magnificent project and amazing learning experience.
+Writing this service, along with standing up and configuring the node, then building and configuring the reverse-proxy authentication server for it, has been a magnificent project and amazing learning experience.
 
 ## Features
 
