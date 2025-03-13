@@ -20,7 +20,7 @@ const app = express();
 
 //  dont do this:   Trust the reverse proxy
 //app.set("trust proxy", 1);
-Trust the reverse proxy if deployed
+// Trust the reverse proxy if deployed
 app.set("trust proxy", 1);
 
 // Use Helmet for security headers
@@ -33,8 +33,8 @@ app.use(
 // Configure CORS – adjust origin as needed
 app.use(
   cors({
-       origin: "http://pin.dgs-creative.com", // update to your frontend domain if needed
-       credentials: true,
+    origin: "http://pin.dgs-creative.com", // update to your frontend domain if needed
+    credentials: true,
   })
 );
 
